@@ -20,9 +20,10 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
+          registry-url: https://registry.npmjs.org
 
       - name: Install Dependencies
-        run: yarn --immutable
+        run: yarn --frozen-lockfile
 
       - name: Build Plugin
         run: yarn nx build nx-sonarqube-dotnet
@@ -31,6 +32,13 @@ jobs:
         run: |
           cd dist/packages/nx-sonarqube-dotnet
           npm version ${{ github.event.inputs.version }}
-          npm publish --access public
+          yarn publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - uses: actions/setup-node@v3
+        with:
+          registry-url: 'https://npm.pkg.github.com'
+      - run: yarn publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
