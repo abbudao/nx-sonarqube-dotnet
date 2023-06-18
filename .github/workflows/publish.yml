@@ -27,11 +27,11 @@ jobs:
         run: yarn --immutable
 
       - name: Build Plugin
-        run: yarn nx build nx-sonarqube
+        run: yarn nx build nx-sonarqube-dotnet
 
       - name: Publish Plugin
         run: |
-          cd dist/packages/nx-sonarqube
+          cd dist/packages/nx-sonarqube-dotnet
           npm version ${{ github.event.inputs.version }}
           npm publish --access public
         env:
