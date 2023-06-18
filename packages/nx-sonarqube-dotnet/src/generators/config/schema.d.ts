@@ -6,7 +6,6 @@ export interface NxSonarqubeGeneratorSchema {
   branches?: boolean;
   exclusions?: string;
   login?: string;
-  organization?: string;
   password?: string;
   projectName?: string;
   projectVersion?: string;

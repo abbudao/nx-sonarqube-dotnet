@@ -1,35 +1,11 @@
-# @koliveira15/nx-sonarqube
-
-![logo](https://i.ibb.co/R0bzqtP/nx-sonarqube.png)
+# @abbudao/nx-sonarqube-dotnet
 
 ## About
 
-A Nx plugin that analyzes projects using [SonarQube](https://www.sonarqube.org)
-/ [SonarCloud](https://sonarcloud.io).
+A Nx plugin that analyzes .NET projects using [SonarQube](https://www.sonarqube.org)
+/ [SonarCloud](https://sonarcloud.io). 
 
-![graph](https://i.ibb.co/whmZkm2/graph.png)
-
-To analyze project "app", we need to know the its dependencies and sub-dependencies. Using the Nx project graph,
-we see that this project has five dependencies, four static and one implicit. With this information,
-the plugin gathers the source and coverage paths for the analysis.
-
-Sources:
-
-- apps/app/src
-- libs/lib-b/src
-- libs/lib-c/src
-- libs/libs-d/src
-- libs/libs-e/src
-- libs/libs-f/src
-
-lcov Paths:
-
-- coverage/apps/app/lcov.info
-- coverage/libs/lib-b/lcov.info
-- coverage/libs/lib-c/lcov.info
-- coverage/libs/libs-d/lcov.info
-- coverage/libs/libs-e/lcov.info
-- coverage/libs/libs-f/lcov.info
+Forked from [nx-sonarqube](https://github.com/koliveira15/nx-sonarqube)
 
 ## Usage
 
@@ -37,17 +13,17 @@ lcov Paths:
 
 1. Nx workspace
 2. SonarQube or Sonar Cloud instance
-3. Jest tests & code coverage enabled
+3. [SonarScanner for .NET](https://docs.sonarqube.org/latest/analyzing-source-code/scanners/sonarscanner-for-dotnet/) installed and accessible in PATH.
 
 ### Installation
 
 1. Install the package:
    ```bash
-   npm i -D @koliveira15/nx-sonarqube
+   npm i -D @abbudao/nx-sonarqube-dotnet
    ```
 2. Execute the configuration generator to setup sonar for a given project:
    ```bash
-   npx nx g @koliveira15/nx-sonarqube:config
+   npx nx g @abbudao/nx-sonarqube-dotnet:config
    ```
 3. Execute the sonar target for the given project:
    ```bash
@@ -77,7 +53,6 @@ Modify the executor options based on the configuration table below. These option
 | projectKey         | Yes      | The project's unique key. Allowed characters are: letters, numbers, -, \_, . and :, with at least one non-digit.                                               |                       |
 | branches           | No       | Include branch name in analysis                                                                                                                                | false                 |
 | exclusions         | No       | Files to exclude from coverage                                                                                                                                 |                       |
-| organization       | No       | Sonar organization                                                                                                                                             |                       |
 | projectName        | No       | Name of the project that will be displayed on the web interface                                                                                                |                       |
 | projectVersion     | No       | The project version                                                                                                                                            |                       |
 | qualityGate        | No       | Forces the analysis step to poll the SonarQube instance and wait for the Quality Gate status                                                                   | true                  |

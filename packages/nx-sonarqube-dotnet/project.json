@@ -1,0 +1,54 @@
+{
+  "name": "nx-sonarqube-dotnet",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/nx-sonarqube-dotnet/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/nx-sonarqube-dotnet",
+        "main": "packages/nx-sonarqube-dotnet/src/index.ts",
+        "buildableProjectDepsInPackageJsonType": "dependencies",
+        "tsConfig": "packages/nx-sonarqube-dotnet/tsconfig.lib.json",
+        "assets": [
+          "packages/nx-sonarqube-dotnet/*.md",
+          {
+            "input": "./packages/nx-sonarqube-dotnet/src",
+            "glob": "**/!(*.ts)",
+            "output": "./src"
+          },
+          {
+            "input": "./packages/nx-sonarqube-dotnet/src",
+            "glob": "**/*.d.ts",
+            "output": "./src"
+          },
+          {
+            "input": "./packages/nx-sonarqube-dotnet",
+            "glob": "generators.json",
+            "output": "."
+          },
+          {
+            "input": "./packages/nx-sonarqube-dotnet",
+            "glob": "executors.json",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "packages/nx-sonarqube-dotnet/**/*.ts",
+          "packages/nx-sonarqube-dotnet/generators.json",
+          "packages/nx-sonarqube-dotnet/executors.json",
+          "packages/nx-sonarqube-dotnet/package.json"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

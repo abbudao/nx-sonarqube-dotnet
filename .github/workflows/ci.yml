@@ -38,8 +38,7 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
           cache: 'npm'
-      - run: npm ci
-      - run: npx nx affected --target=lint
-      - run: npx nx affected --target=test --ci
-      - run: npx nx affected --target=build
-      - run: npx nx affected --target=e2e --parallel=1
+      - run: yarn
+      - run: yarn nx affected --target=lint
+      - run: yarn nx affected --target=test --ci
+      - run: yarn nx affected --target=build

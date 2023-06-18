@@ -3,7 +3,6 @@ export interface ScanExecutorSchema {
   projectKey: string;
   branches?: boolean;
   exclusions?: string;
-  organization?: string;
   projectName?: string;
   projectVersion?: string;
   qualityGate?: boolean;
