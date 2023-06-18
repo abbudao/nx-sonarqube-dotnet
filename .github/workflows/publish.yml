@@ -39,6 +39,9 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           registry-url: 'https://npm.pkg.github.com'
-      - run: yarn publish
+      - run: |
+          cd dist/packages/nx-sonarqube-dotnet
+          npm version ${{ github.event.inputs.version }}
+          yarn publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
